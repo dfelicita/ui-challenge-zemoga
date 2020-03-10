@@ -1,0 +1,19 @@
+<div class="cardContainer" [ngClass]="{ 'active': active, 'inactive': !active }" [ngStyle]="{'background-image': !active ? 'url('+cardInfo.img+')' : 'none'}">
+  <span class="topTitle" *ngIf="active">What's your opinion on</span>
+  <h2 class="mainTitle"><mat-icon *ngIf="!active" [ngClass]="{ 'up': cardInfo.thumbsUp > cardInfo.thumbsDown, 'down': cardInfo.thumbsUp < cardInfo.thumbsDown }">{{cardInfo.thumbsUp > cardInfo.thumbsDown ? 'thumb_up_alt' : 'thumb_down_alt'}}</mat-icon>{{cardInfo.title}}</h2>
+  <p>{{cardInfo.description}}</p>
+  <a href="{{cardInfo.link}}" *ngIf="active"><span class="wikiLink"><img src="../../../assets/img/wikipedia.svg" width="18px" height="18px" /> information</span></a>
+  <h4 *ngIf="active">What's your veredict?</h4>
+  <div class="thumbs" *ngIf="active">
+    <div class="up"><mat-icon>thumb_up_alt</mat-icon></div>
+    <div class="down"><mat-icon>thumb_down_alt</mat-icon></div>
+  </div>
+  <div class="inactiveFooter" *ngIf="!active">
+    <a href="{{cardInfo.postLink}}">View Full Report</a>
+    <span class="category"><b>1 month ago</b><br>in {{cardInfo.category}}</span>
+  </div>
+  <div class="voteBar" *ngIf="!active">
+    <div class="up" [style.width.%]="(cardInfo.thumbsUp / (cardInfo.thumbsUp + cardInfo.thumbsDown)*100)"><mat-icon>thumb_up_alt</mat-icon>{{(cardInfo.thumbsUp / (cardInfo.thumbsUp + cardInfo.thumbsDown)*100)}}%</div>
+    <div class="down" [style.width.%]="(cardInfo.thumbsDown / (cardInfo.thumbsUp + cardInfo.thumbsDown)*100)">{{(cardInfo.thumbsDown / (cardInfo.thumbsUp + cardInfo.thumbsDown)*100)}}%<mat-icon>thumb_down_alt</mat-icon></div>
+  </div>
+</div>
